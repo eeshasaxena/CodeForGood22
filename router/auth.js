@@ -6,7 +6,6 @@ const queryString = require("query-string");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
-const DataEntry = require("../models/DataEntry");
 
 router.get("/", (req, res) => {
   res.send("Sending from auth");
@@ -114,8 +113,7 @@ router.get("/pa", async (req,res) => {
 
 router.post("/pa/accept", async(req,res) => {
     const data = await DataEntry.find({id : req.id});
-
-    
+        
 })
 
 module.exports = router;
