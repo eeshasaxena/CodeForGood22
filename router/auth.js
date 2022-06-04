@@ -10,16 +10,17 @@ const user = require("../models/User");
 router.get("/", (req, res) => {
   res.send("Sending from auth");
 });
+
 //login basic api
 //get all fellows for a  pa
 //get all pa from pm
 
-// LOGIN AUTHENTICATION
+// 1. LOGIN AUTHENTICATION
 router.post("/login", async (req, res) => {
   try {
     let token;
     const { username, password } = req.body;
-    // console.log(username)
+    console.log(username)
 
     if (!username || !password) {
       res.status(400).json({ error: "fill all the fields " });
@@ -55,7 +56,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Fetch all fellows for a given PA from the database
+// 2. Fetch all fellows for a given PA from the database
 router.post("/fellow/:pa", async (req, res) => {
   try {
     const pa = req.params.pa;
@@ -66,7 +67,7 @@ router.post("/fellow/:pa", async (req, res) => {
   }
 });
 
-//Fetch all PA's for a given PM  name from the database
+// 3. Fetch all PA's for a given PM  name from the database
 
 router.get("/getpa/byusername", async (req, res) => {
   console.log("Hello");
@@ -81,7 +82,7 @@ router.get("/getpa/byusername", async (req, res) => {
   }
 });
 
-// DataEntry for authorization
+// 4. DataEntry for authorization
 router.post("/fellow", async (req, res) => {
   // const {id, isAuthorized, month} = req.body;
   // console.log(id);
@@ -103,14 +104,14 @@ router.post("/fellow", async (req, res) => {
   }
 });
 
-// Get DataEntry for auth
+// 5. Get DataEntry for auth
 router.get("/pa", async (req, res) => {
   const data = await DataEntry.find({ isAuthorized: false });
   console.log(data);
   res.send(data);
 });
 
-// Accepting the request from the fellow
+// 6. Accepting the request from the fellow
 router.post("/pa/accept", async (req, res) => {
   const data = await DataEntry.find({ id: req.body.id });
   //findOne and Update
@@ -118,7 +119,7 @@ router.post("/pa/accept", async (req, res) => {
   res.status(200).send({ message: "entry accepted" });
 });
 
-// pa rejects incoming fellow request
+// 7. pa rejects incoming fellow request
 router.post("/pa/reject", async (req, res) => {
   DataEntry.remove({ id: req.body.id });
   res.status(200).send({ message: "entry rejected" });
