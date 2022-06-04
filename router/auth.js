@@ -56,11 +56,12 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 2. Fetch all fellows for a given PA from the database
-router.post("/fellow/:pa", async (req, res) => {
+// Fetch all fellows for a given PA from the database
+router.get("/fellow/username", async (req, res) => {
   try {
-    const pa = req.params.pa;
-    const fellows = await user.find({ pa: pa });
+    const username = req.body.username;
+    const findPA = await user.findOne({ username: username });
+    const fellows = await user.find({ pa: findPA.id, role: "fellow" });
     res.json(fellows);
   } catch (err) {
     res.status(404).json({ err });
@@ -69,13 +70,14 @@ router.post("/fellow/:pa", async (req, res) => {
 
 // 3. Fetch all PA's for a given PM  name from the database
 
-router.get("/getpa/byusername", async (req, res) => {
+router.get("/pa/username", async (req, res) => {
   console.log("Hello");
   try {
     //get username from query params
     const username = req.body.username;
-    const pas = await user.findOne({ username: username });
-    const allPas = await user.find({ pm: pas.pm });
+    const pas = await user.findOne({ username });
+    console.log(pas);
+    const allPas = await user.find({ pm: pas.id, role: "pa" });
     res.json(allPas);
   } catch (err) {
     res.status(404).json({ err });
