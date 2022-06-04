@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const queryString = require("query-string");
+// const queryString = require("query-string");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
@@ -103,17 +103,32 @@ router.post("/fellow", async (req, res) => {
   }
 });
 
-// Get DataEntry for auth 
-router.get("/pa", async (req,res) => {
-
-    const data = await DataEntry.find({isAuthorized : false})
-    console.log(data);
-    res.send(data)
+// Get DataEntry for auth
+router.get("/pa", async (req, res) => {
+  const data = await DataEntry.find({ isAuthorized: false });
+  console.log(data);
+  res.send(data);
 });
 
-router.post("/pa/accept", async(req,res) => {
-    const data = await DataEntry.find({id : req.id});
-        
-})
+// Accepting the request from the fellow
+router.post("/pa/accept", async (req, res) => {
+
+  const data = await DataEntry.findOne({ id : req.body.id })
+    console.log(data)
+
+    await DataEntry.findOneAndUpdate(
+        { id: req.body.id },
+        {
+          isAuthorized: true,
+        },
+        null,
+        function (err, doc) {
+          if (err) res.send(err);
+          else console.log("Updated");
+        }
+      );
+  
+});
+
 
 module.exports = router;
