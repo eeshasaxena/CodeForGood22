@@ -7,6 +7,3 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 const PORTS = process.env.PORT;
-//get all fellows from pa
-
-//list pa from pm
