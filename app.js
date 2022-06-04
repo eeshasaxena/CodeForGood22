@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const app = express();
 
-// 3. DATABASE 
+//  DATABASE 
 dotenv.config({ path : './.env'});
 require('./db/connection')
 const User = require('./models/userSchema')
-console.log(mongoose.connection.readyState)
+// console.log(mongoose.connection.readyState)
 
 
 // 2. MIDDLEWARE
@@ -15,6 +15,10 @@ const middleware = (req,res,next) => {
     console.log("middleware running");
     next();
 }
+
+// app.get('/', (req,res) => {
+//     res.send("Hello from the server")
+// })
 
 
 // listen and respond to the requesting stating the server 
