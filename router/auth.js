@@ -112,22 +112,10 @@ router.get("/pa", async (req, res) => {
 
 // Accepting the request from the fellow
 router.post("/pa/accept", async (req, res) => {
-
-  const data = await DataEntry.findOne({ id : req.body.id })
-    console.log(data)
-
-    await DataEntry.findOneAndUpdate(
-        { id: req.body.id },
-        {
-          isAuthorized: true,
-        },
-        null,
-        function (err, doc) {
-          if (err) res.send(err);
-          else console.log("Updated");
-        }
-      );
-  
+  const data = await DataEntry.find({ id: req.body.id });
+  //findOne and Update
+  await DataEntry.updateOne({ id: req.body.id }, { isAuthorized: true });
+  res.status(200).send({ message: "entry accepted" });
 });
 
 
