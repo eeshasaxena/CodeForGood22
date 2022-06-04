@@ -28,7 +28,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  pm: {
+    type: String,
+    // required: true,
+  },
+  pa: {
+    type: String,
+    //required: true,
+  },
 });
+
 
 const user = mongoose.model("user", userSchema);
 module.exports = user;

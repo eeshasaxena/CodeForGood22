@@ -7,13 +7,16 @@ require("./models/DataEntry");
 dotenv.config({ path: "./.env" });
 require("./db/connection");
 const User = require("./models/User");
-// console.log(mongoose.connection.readyState);
 
 // 2. MIDDLEWARE
 const middleware = (req, res, next) => {
   console.log("middleware running");
   next();
 };
+
+const userapp=require("./models/fellow")
+app.use('/user-api',userapp)
+
 
 // creating middleware for auth.js to convert data into json or to read im not sure
 app.use(express.json());
