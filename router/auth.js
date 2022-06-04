@@ -111,19 +111,10 @@ router.get("/pa", async (req, res) => {
 });
 
 router.post("/pa/accept", async (req, res) => {
-  const data = await DataEntry.find({ id: req.id });
+  const data = await DataEntry.find({ id: req.body.id });
   //findOne and Update
-  await DataEntry.findOneAndUpdate(
-    { id: req.id },
-    {
-      isAuthorized: true,
-    },
-    null,
-    function (err, doc) {
-      if (err) res.send(err);
-      else console.log("Updated");
-    }
-  );
+  await DataEntry.updateOne({ id: req.body.id }, { isAuthorized: true });
+  res.status(200).send({ message: "entry accepted" });
 });
 
 module.exports = router;
