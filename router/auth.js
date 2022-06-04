@@ -103,4 +103,13 @@ router.post("/fellow", async (req,res) =>{
     
 });
 
+// Get DataEntry for auth 
+router.get("/pa", async (req,res) => {
+
+    const data = await DataEntry.find({isAuthorized : false})
+    console.log(data);
+    res.send(data)
+
+})
+
 module.exports = router;
