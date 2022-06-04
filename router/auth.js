@@ -6,12 +6,13 @@ const queryString = require("query-string");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
+const DataEntry = require("../models/DataEntry");
 
 router.get("/", (req, res) => {
   res.send("Sending from auth");
 });
 //login basic api
-//get all fellows for a   pa
+//get all fellows for a  pa
 //get all pa from pm
 
 // LOGIN AUTHENTICATION
@@ -81,44 +82,33 @@ router.get("/getpa/byusername", async (req, res) => {
   }
 });
 
-//create function to store data into temp file
+// DataEntry for authorization
+router.post("/fellow", async (req, res) => {
+  // const {id, isAuthorized, month} = req.body;
+  // console.log(id);
+  // console.log(month);
 
-router.post("/fellow/create-data-entry/:username", async (req, res) => {
-  const data = req.body;
-  const username = req.params.username;
-  //Store data in username.json
+  const newEntry = new DataEntry(req.body);
+  const entryExist = await DataEntry.findOne({ id: req.body.id });
 
-  const filePath = `./temp/${username}.json`;
-  //open file
-  const file = require(filePath);
-  //push data to file
-  file.push(data);
-  //write data to file
-  fs.writeFileSync(filePath, JSON.stringify(file));
-  //find pa from username
-  const User = user.find({ username: username });
-  const pa = user.find({ pa: User.pa });
-  //Send notification to pa
-  const notification = {
-    title: "New Data Entry",
-    body: `${username} has submitted a new data entry`,
-    data: {
-      username: username,
-      pa: pa.pa,
-      pm: pa.pm,
-      fellow: pa.fellow,
-      type: "data-entry",
-    },
-  };
-  //send notification to pa
-  const notificationData = {
-    title: notification.title,
-    body: notification.body,
-    data: notification.data,
-  };
-  //send notification to pa using socket
-  io.emit("notification", notificationData);
-  res.json({ message: "Data entry created" });
+  if (entryExist) {
+    res.status(422).send({ error: "entry already exists" });
+  } else {
+    try {
+      console.log("something");
+      await newEntry.save();
+      return res.status(201).json({ message: "entry registered succesfully" });
+    } catch (error) {
+      return res.status(400).json({ error: "Failed to enter data" });
+    }
+  }
+});
+
+// Get DataEntry for auth
+router.get("/pa", async (req, res) => {
+  const data = await DataEntry.find({ isAuthorized: false });
+  console.log(data);
+  res.send(data);
 });
 
 module.exports = router;
