@@ -99,7 +99,7 @@ router.post("/fellow", async (req, res) => {
     res.status(422).send({ error: "entry already exists" });
   } else {
     try {
-      console.log("something");
+      console.log("04074da6-3345-4c67-89a4-2458ed67ed2bsomething");
       await newEntry.save();
       return res.status(201).json({ message: "entry registered succesfully" });
     } catch (error) {
