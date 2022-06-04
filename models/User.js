@@ -7,6 +7,11 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -22,6 +27,14 @@ const userSchema = new Schema({
   role: {
     type: String,
     required: true,
+  },
+  pm: {
+    type: String,
+    // required: true,
+  },
+  pa: {
+    type: String,
+    //required: true,
   },
 });
 
