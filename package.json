@@ -1,0 +1,20 @@
+{
+  "name": "team-52",
+  "version": "1.0.0",
+  "description": "GitHub Repository for Team 52 of the JP Morgan Chase Code for Good hackathon on June 4-5 2022.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfgblr22/team-52.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfgblr22/team-52/issues"
+  },
+  "homepage": "https://github.com/cfgblr22/team-52#readme"
+}
