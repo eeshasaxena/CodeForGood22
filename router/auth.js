@@ -6,7 +6,6 @@ const queryString = require("query-string");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
-const DataEntry = require("../models/DataEntry");
 
 router.get("/", (req, res) => {
   res.send("Sending from auth");
@@ -104,18 +103,27 @@ router.post("/fellow", async (req, res) => {
   }
 });
 
-// Get DataEntry for auth 
-router.get("/pa", async (req,res) => {
-
-    const data = await DataEntry.find({isAuthorized : false})
-    console.log(data);
-    res.send(data)
+// Get DataEntry for auth
+router.get("/pa", async (req, res) => {
+  const data = await DataEntry.find({ isAuthorized: false });
+  console.log(data);
+  res.send(data);
 });
 
-router.post("/pa/accept", async(req,res) => {
-    const data = await DataEntry.find({id : req.id});
-
-    
-})
+router.post("/pa/accept", async (req, res) => {
+  const data = await DataEntry.find({ id: req.id });
+  //findOne and Update
+  await DataEntry.findOneAndUpdate(
+    { id: req.id },
+    {
+      isAuthorized: true,
+    },
+    null,
+    function (err, doc) {
+      if (err) res.send(err);
+      else console.log("Updated");
+    }
+  );
+});
 
 module.exports = router;
