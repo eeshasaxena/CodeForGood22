@@ -2,7 +2,7 @@ const exp=require("express")
 const userapp=exp.Router()
 userapp.use(exp.json())
  
-const user=require('./userSchema');
+const user=require('./User');
 
 userapp.get('/',(req,res)=>{
    user.find().then((result)=>{
