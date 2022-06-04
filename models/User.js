@@ -28,6 +28,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  pm: {
+    //store the uuid of the project manager
+    type: String,
+    // required: true,
+  },
+  pa: {
+    //store the uuid of the project assistant
+    type: String,
+    //required: true,
+  },
 });
 
 const user = mongoose.model("user", userSchema);
