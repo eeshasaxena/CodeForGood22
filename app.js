@@ -6,8 +6,8 @@ require("./models/DataEntry");
 // 3. DATABASE
 dotenv.config({ path: "./.env" });
 require("./db/connection");
-const User = require("./models/userSchema");
-console.log(mongoose.connection.readyState);
+const User = require("./models/User");
+// console.log(mongoose.connection.readyState);
 
 // 2. MIDDLEWARE
 const middleware = (req, res, next) => {
