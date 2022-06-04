@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   res.send("Sending from auth");
 });
 //login basic api
-//get all fellows for a   pa
+//get all fellows for a  pa
 //get all pa from pm
 
 
