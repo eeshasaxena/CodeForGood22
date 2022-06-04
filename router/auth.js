@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 router.post('/login', async (req, res) => {
 
     try {
-        // let token;
+        let token;
         const { username, password } = req.body
         // console.log(username)
 
@@ -30,13 +30,13 @@ router.post('/login', async (req, res) => {
         const userLogin = await user.findOne({ username: username });
         // console.log(userLogin)
         // token auth
-        // token = await userLogin.generateAuthToken();
-        // console.log(token)
+        token = await userLogin.generateAuthToken();
+        console.log(token)
 
-        // res.cookie("jwtoken", token, {
-        //     expires : new Date(Date.now() + 258922000000),
-        //     httpOnly : true
-        // });
+        res.cookie("jwtoken", token, {
+            expires : new Date(Date.now() + 258922000000),
+            httpOnly : true
+        });
 
         if (userLogin) {
             // match password
