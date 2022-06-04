@@ -21,14 +21,14 @@ router.post('/login', async (req, res) => {
     try {
         // let token;
         const { username, password } = req.body
-        console.log(req.body)
+        // console.log(username)
 
         if (!username || !password) {
             res.status(400).json({ error: "fill all the fields " })
         }
 
         const userLogin = await user.findOne({ username: username });
-        
+        // console.log(userLogin)
         // token auth
         // token = await userLogin.generateAuthToken();
         // console.log(token)
@@ -40,8 +40,11 @@ router.post('/login', async (req, res) => {
 
         if (userLogin) {
             // match password
-            const isMatch = await compare(password, userLogin.password)
-            if (isMatch) {
+            console.log(userLogin.password)
+            console.log(password)
+            // const isMatch =  compare(password, userLogin.password)
+            // console.log(isMatch)
+            if (password == userLogin.password) {
                 res.status(200).json({ message: "User logged in " })
             } else {
                 res.status(400).json({ error: "Invalid credentials" })
@@ -52,7 +55,7 @@ router.post('/login', async (req, res) => {
 
 
     } catch (err) {
-        res.status(404).json({ err});
+        res.status(404).json({err});
     }
 });
 
