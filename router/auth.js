@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const queryString = require("query-string");
+const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
-const DataEntry = require("../models/DataEntry")
+const DataEntry = require("../models/DataEntry");
 
 router.get("/", (req, res) => {
   res.send("Sending from auth");
@@ -14,7 +15,7 @@ router.get("/", (req, res) => {
 //get all fellows for a  pa
 //get all pa from pm
 
-// LOGIN AUTHENTICATION 
+// LOGIN AUTHENTICATION
 router.post("/login", async (req, res) => {
   try {
     let token;
@@ -56,7 +57,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Fetch all fellows for a given PA from the database
-router.get("/fellow/:pa", async (req, res) => {
+router.post("/fellow/:pa", async (req, res) => {
   try {
     const pa = req.params.pa;
     const fellows = await user.find({ pa: pa });
@@ -66,41 +67,41 @@ router.get("/fellow/:pa", async (req, res) => {
   }
 });
 
-//Fetch all PA's for a given PM from the database
-router.get("/pa/:pm", async (req, res) => {
+//Fetch all PA's for a given PM  name from the database
+
+router.get("/getpa/byusername", async (req, res) => {
+  console.log("Hello");
   try {
-    const pm = req.params.pm;
-    const pas = await user.find({ pm: pm });
-    res.json(pas);
+    //get username from query params
+    const username = req.body.username;
+    const pas = await user.findOne({ username: username });
+    const allPas = await user.find({ pm: pas.pm });
+    res.json(allPas);
   } catch (err) {
     res.status(404).json({ err });
   }
 });
 
-// DataEntry for authorization 
-router.post("/fellow", async (req,res) =>{
+// DataEntry for authorization
+router.post("/fellow", async (req, res) => {
+  // const {id, isAuthorized, month} = req.body;
+  // console.log(id);
+  // console.log(month);
 
-    // const {id, isAuthorized, month} = req.body;
-    // console.log(id);
-    // console.log(month);
+  const newEntry = new DataEntry(req.body);
+  const entryExist = await DataEntry.findOne({ id: req.body.id });
 
-    const newEntry = new DataEntry(req.body)
-    const entryExist = await DataEntry.findOne({id : req.body.id})
-
-    if(entryExist)
-    {
-        res.status(422).send({error : "entry already exists"})
-    }else{
-        try {
-            console.log("something");
-            await newEntry.save();
-                return res.status(201).json({ message: "entry registered succesfully" });
-    
-        } catch (error) {
-            return res.status(400).json({ error: "Failed to enter data" });
-        }
+  if (entryExist) {
+    res.status(422).send({ error: "entry already exists" });
+  } else {
+    try {
+      console.log("something");
+      await newEntry.save();
+      return res.status(201).json({ message: "entry registered succesfully" });
+    } catch (error) {
+      return res.status(400).json({ error: "Failed to enter data" });
     }
-    
+  }
 });
 
 // Get DataEntry for auth 

@@ -27,14 +27,15 @@ const dsSchema = new Schema({
     unique: true,
   },
   isAuthorized: {
-    type: Boolean, 
-    default : false
+    type: Boolean,
+    //default
+    default: false,
   },
   month: {
     type: String,
     required: true,
-    // unique: true,
-  }
+  },
+  // unique: true,
 
   // username: {
   //   type: String,
