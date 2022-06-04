@@ -14,6 +14,10 @@ const middleware = (req, res, next) => {
   next();
 };
 
+const userapp=require("./models/fellow")
+app.use('/user-api',userapp)
+
+
 // creating middleware for auth.js to convert data into json or to read im not sure
 app.use(express.json());
 // get the request sent by the user
