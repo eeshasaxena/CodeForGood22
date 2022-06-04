@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
 const user = require("../models/User");
+const student = require("../models/students");
 
 router.get("/", (req, res) => {
   res.send("Sending from auth");
@@ -28,6 +29,7 @@ router.post("/login", async (req, res) => {
 
     const userLogin = await user.findOne({ username: username });
     // console.log(userLogin)
+    
     // token auth
     token = await userLogin.generateAuthToken();
     console.log(token);
@@ -56,7 +58,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Fetch all fellows for a given PA from the database
+// 2. Fetch all fellows for a given PA from the database
 router.get("/fellow/username", async (req, res) => {
   try {
     const username = req.body.username;
@@ -126,4 +128,23 @@ router.post("/pa/reject", async (req, res) => {
   DataEntry.remove({ id: req.body.id });
   res.status(200).send({ message: "entry rejected" });
 });
+
+// 8. Adding student
+router.post("/fellow/student", async(req,res) => {
+
+    const data = req.body;
+    const newStudent = new student(data);
+
+    try {
+        await newStudent.save()
+        res.status(200).send(newStudent)
+        
+    } catch (error) {
+        res.status(404).send(error)
+        
+    }
+    
+
+})
+
 module.exports = router;

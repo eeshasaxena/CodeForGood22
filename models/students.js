@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken')
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
+    fid : {
+        type : String,
+        required : true
+    },
   name: {
     type: String,
     required: true,
@@ -36,5 +40,6 @@ const studentSchema = new Schema({
 // });
 
 
-const user = mongoose.model("user", userSchema);
-module.exports = user;
+const student = mongoose.model("student", studentSchema);
+
+module.exports = student;
