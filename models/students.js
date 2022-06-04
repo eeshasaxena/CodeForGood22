@@ -3,49 +3,18 @@ const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+const studentSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
+  fatherName: {
+    type: String
   },
-  password: {
+  motherName: {
     type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: true,
-  },
-  pm: {
-    type: String,
-    // required: true,
-  },
-  pa: {
-    type: String,
-    //required: true,
-  },
-  tokens : [
-    {
-        token : {
-            type : String,
-            required : true
-        }
-    }
-]
+    required: true
+  }
 });
 
 // hashing passwords
