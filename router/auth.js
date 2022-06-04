@@ -117,4 +117,8 @@ router.post("/pa/accept", async (req, res) => {
   res.status(200).send({ message: "entry accepted" });
 });
 
+router.post("/pa/reject", async (req, res) => {
+  DataEntry.remove({ id: req.body.id });
+  res.status(200).send({ message: "entry rejected" });
+});
 module.exports = router;
