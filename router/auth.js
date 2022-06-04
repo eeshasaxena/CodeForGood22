@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
   try {
     let token;
     const { username, password } = req.body;
-    console.log(username)
+    console.log(username);
 
     if (!username || !password) {
       res.status(400).json({ error: "fill all the fields " });
@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
 
     const userLogin = await user.findOne({ username: username });
     // console.log(userLogin)
-    
+
     // token auth
     token = await userLogin.generateAuthToken();
     console.log(token);
@@ -130,21 +130,37 @@ router.post("/pa/reject", async (req, res) => {
 });
 
 // 8. Adding student
-router.post("/fellow/student", async(req,res) => {
+router.post("/fellow/student", async (req, res) => {
+  const data = req.body;
+  const newStudent = new student(data);
 
-    const data = req.body;
-    const newStudent = new student(data);
+  try {
+    await newStudent.save();
+    res.status(200).send(newStudent);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+// PM ROUTES EDIT ANY DATA ABOUT PM
 
-    try {
-        await newStudent.save()
-        res.status(200).send(newStudent)
-        
-    } catch (error) {
-        res.status(404).send(error)
-        
-    }
-    
+router.post("/create/pm", async (req, res) => {
+  try {
+    const id = uuid();
+    const data = await new user({ ...req.body, role: "pm", id }).save();
+    res.send(data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
-})
+router.post("/create/pm/pa/:pmId", async (req, res) => {
+  const pmId = req.params.pmId;
+  const id = uuid();
+  try {
+    const data = await new user({ ...req.body, role: "pa", id, pm: pmId });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 module.exports = router;
