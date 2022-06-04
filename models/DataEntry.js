@@ -10,4 +10,5 @@ csv()
   .fromFile(dbFile)
   .then((jsonObj) => {
     console.log(jsonObj);
+    //create a new schema from fields of json
   });
