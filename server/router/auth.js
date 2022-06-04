@@ -141,18 +141,22 @@ router.post("/fellow/student", async (req, res) => {
     res.status(404).send(error);
   }
 });
-// PM ROUTES EDIT ANY DATA ABOUT PM
 
+// Create PM
 router.post("/create/pm", async (req, res) => {
   try {
     const id = uuid();
-    const data = await new user({ ...req.body, role: "pm", id }).save();
+    const val = { ...req.body, role: "pm", id };
+        console.log(val)
+        console.log(req.body)
+    // const data = await new user(val).save();
     res.send(data);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
+// 9. create pa
 router.post("/create/pm/pa/:pmId", async (req, res) => {
   const pmId = req.params.pmId;
   const id = uuid();
