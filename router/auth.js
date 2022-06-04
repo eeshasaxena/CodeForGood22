@@ -109,7 +109,12 @@ router.get("/pa", async (req,res) => {
     const data = await DataEntry.find({isAuthorized : false})
     console.log(data);
     res.send(data)
+});
 
+router.post("/pa/accept", async(req,res) => {
+    const data = await DataEntry.find({id : req.id});
+
+    
 })
 
 module.exports = router;
