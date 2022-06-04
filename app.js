@@ -14,7 +14,8 @@ const middleware = (req, res, next) => {
   console.log("middleware running");
   next();
 };
-
+const userapp=require("./models/fellow")
+app.use('/user-api',userapp)
 // listen and respond to the requesting stating the server
 const PORTS = process.env.PORT;
 app.listen(PORTS, () => {
