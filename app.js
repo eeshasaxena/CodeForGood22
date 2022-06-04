@@ -1,4 +1,5 @@
 const express = require("express");
+const DataEntry = require("./models/DataEntry");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
@@ -23,7 +24,7 @@ app.use(express.json());
 
 app.use(require("./router/auth"));
 
-console.log(uuid.v4());
+//console.log(uuid.v5());
 //Create User which is fellow
 app.post("/user-api/create", async (req, res) => {
   const user = new User(req.body);
@@ -32,6 +33,17 @@ app.post("/user-api/create", async (req, res) => {
     res.send(user);
   } catch (err) {
     res.status(400).send(err);
+  }
+});
+
+app.post("/fellow/postdata", async (req, res) => {
+  const ds = new DataEntry(req.body);
+  console.log(ds);
+  try {
+    await ds.save();
+    res.json({ message: "Data entry created" });
+  } catch (err) {
+    res.status(400).json({ err });
   }
 });
 
