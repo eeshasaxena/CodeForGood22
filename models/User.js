@@ -29,12 +29,10 @@ const userSchema = new Schema({
     required: true,
   },
   pm: {
-    //store the uuid of the project manager
     type: String,
     // required: true,
   },
   pa: {
-    //store the uuid of the project assistant
     type: String,
     //required: true,
   },
