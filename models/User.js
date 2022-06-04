@@ -51,6 +51,7 @@ const userSchema = new Schema({
 //   next();
 // });
 
+
 // generating tokens
 userSchema.methods.generateAuthToken = async function() {
   try {
