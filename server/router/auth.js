@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { uuid } = require("uuidv4");
+
 // const queryString = require("query-string");
 const DataEntry = require("../models/DataEntry");
 require("../db/connection");
@@ -144,16 +146,13 @@ router.post("/fellow/student", async (req, res) => {
 
 // Create PM
 router.post("/create/pm", async (req, res) => {
-  try {
-    const id = uuid();
-    const val = { ...req.body, role: "pm", id };
-        console.log(val)
-        console.log(req.body)
-    // const data = await new user(val).save();
-    res.send(data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+  const id = uuid();
+  const val = { ...req.body, role: "pm", id };
+  console.log(val);
+  console.log(req.body);
+  const data = await new user(val).save();
+  res.send(data);
+  res.status(500).send(err);
 });
 
 // 9. create pa
@@ -162,9 +161,26 @@ router.post("/create/pm/pa/:pmId", async (req, res) => {
   const id = uuid();
   try {
     const data = await new user({ ...req.body, role: "pa", id, pm: pmId });
+    res.status(200).send(data);
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
+// pass 2 args in router.post 
+
+
+router.post("/create/pm:pmId/fellow:paId/", async (req, res) => { 
+  const pmId = req.params.pmId;
+  const paId = req.params.paId;
+  const id = uuid();
+  try {
+    const data = await new user({ ...req.body, role="fellow", id, pm: pmId, pa: paId });
+    res.status(200).send(data)
+  }
+  catch (err) { 
+    res.status(200).send(err);
+  }
+
+})
 module.exports = router;
