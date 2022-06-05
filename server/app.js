@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const DataEntry = require("./models/DataEntry");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -14,6 +15,8 @@ const middleware = (req, res, next) => {
   console.log("middleware running");
   next();
 };
+
+app.use(cors());
 
 //const userapp = require("./models/fellow");
 //app.use("/user-api", userapp);

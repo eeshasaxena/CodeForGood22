@@ -22,6 +22,7 @@ router.get("/", (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     let token;
+    console.log(req.body);
     const { username, password } = req.body;
     console.log(username);
 
@@ -48,7 +49,8 @@ router.post("/login", async (req, res) => {
       // const isMatch =  compare(password, userLogin.password)
       // console.log(isMatch)
       if (password == userLogin.password) {
-        res.status(200).json({ message: "User logged in " });
+        console.log(userLogin);
+        res.status(200).send(userLogin);
       } else {
         res.status(400).json({ error: "Invalid credentials" });
       }
@@ -175,7 +177,7 @@ router.post("/create/pm:pmId/fellow:paId/", async (req, res) => {
   const paId = req.params.paId;
   const id = uuid();
   try {
-    const data = await new user({ ...req.body, role="fellow", id, pm: pmId, pa: paId });
+    const data = await new user({ ...req.body, role:"fellow", id, pm: pmId, pa: paId });
     res.status(200).send(data)
   }
   catch (err) { 
