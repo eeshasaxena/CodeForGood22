@@ -6,19 +6,9 @@ GitHub Repository for Team 52 of the JP Morgan Chase Code for Good hackathon on 
    - [x] Problem Statemet revealed .
    - [x] Model building started.
    - [x] Importance of individual features calculated.
-- 4th September, 2020.
-   - [x] Models split into two.
-   - [x] Input page changed.
-   - [x] One model created.
-- 5th September, 2020.
-   - [x] Second model creaed.
-   - [x] Enhancement of model 1.
-   - [x] Enhancement of model 2.
-- 6th September, 2020.
-   - [x] Models built successfully.
-   - [x] Landing page hosted using Flask.
-- 7th September, 2020.
-   - [x] Models saved in Pickle files.   
+- 4th June, 2022.
+   - [x] Commencement of the project.
+   - [x] Project deployed.  
 
 ## 📄 Abstract
 Anubhuti, a Non Profit, is attempting to create a learning environment for underprivileged children by acting as a liaison between schools and the community. Anubhuti works with the government to improve children's conceptual knowledge in order to help them go into school. They motivate kids to apply by raising awareness and providing incentives. 
