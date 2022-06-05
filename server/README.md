@@ -28,16 +28,16 @@ We aim to create a web-app which will be used to provide technological assist to
 
 ### 📍 Major Checkpoints
 - ⛳ Creation of API
-   - [ ] Run server and request predictions
-   - [ ] Testing the API
+   - [x] Run server and request predictions
+   - [x] Testing the API
 - ⛳ Web Development
-   - [ ] Front End
+   - [x] Front End
       - [x] Landing page
       - [x] Input Form
-      - [ ] Visualization of graphical data
-   - [ ] Back End
-      - [ ] Integrating the API with the web-app
-      - [ ] Calling of responses for the input.
+      - [x] Visualization of graphical data
+   - [x] Back End
+      - [x] Integrating the API with the web-app
+      - [x] Calling of responses for the input.
 
 ### 📚 Tech stack
 - <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png"></code> HTML
@@ -45,8 +45,4 @@ We aim to create a web-app which will be used to provide technological assist to
 - <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png"></code> Python
 - <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png"></code> GIT
 - <code><img height="35" src="https://github.com/edent/SuperTinyIcons/blob/master/images/svg/github.svg"></code> Github
-- <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flask/flask.png"></code> Flask
 - <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code> NodeJS
-
-## <img height="35" src="https://i.pinimg.com/736x/e0/de/4f/e0de4f8157d0b0a9eff348231ae7de07.jpg"> Endgame
-Finally, we will be hosting the website where the owner of the shop will provide the needful information. Consequetly, we will display the graphical representation of the purchasing pattern of that particular customer and recommend the type of offer to be sent in order to optimize the sales.
