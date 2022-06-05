@@ -63,6 +63,7 @@ router.post("/login", async (req, res) => {
 });
 
 // 2. Fetch all fellows for a given PA from the database
+
 router.get("/fellow/username", async (req, res) => {
   try {
     const username = req.body.username;
@@ -169,20 +170,23 @@ router.post("/create/pm/pa/:pmId", async (req, res) => {
   }
 });
 
-// pass 2 args in router.post 
+// pass 2 args in router.post
 
-
-router.post("/create/pm:pmId/fellow:paId/", async (req, res) => { 
+router.post("/create/pm:pmId/fellow:paId/", async (req, res) => {
   const pmId = req.params.pmId;
   const paId = req.params.paId;
   const id = uuid();
   try {
-    const data = await new user({ ...req.body, role:"fellow", id, pm: pmId, pa: paId });
-    res.status(200).send(data)
-  }
-  catch (err) { 
+    const data = await new user({
+      ...req.body,
+      role: "fellow",
+      id,
+      pm: pmId,
+      pa: paId,
+    });
+    res.status(200).send(data);
+  } catch (err) {
     res.status(200).send(err);
   }
-
-})
+});
 module.exports = router;
