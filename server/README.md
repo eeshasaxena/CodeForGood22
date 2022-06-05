@@ -21,28 +21,14 @@ GitHub Repository for Team 52 of the JP Morgan Chase Code for Good hackathon on 
    - [x] Models saved in Pickle files.   
 
 ## 📄 Abstract
-The data simulates how people make purchasing decisions and how those decisions are influenced by promotional offers.
-Each person in the simulation has some hidden traits that influence their purchasing patterns and are associated with their observable traits. 
-People produce various events, including receiving offers, opening offers, and making purchases.
-As a simplification, there are no explicit products to track. Only the amounts of each transaction or offer are recorded.
-There are three types of offers that can be sent: buy-one-get-one (BOGO), discount, and informational. In a BOGO offer, a user needs to spend a certain amount to get a reward equal to that threshold amount. In a discount, a user gains a reward equal to a fraction of the amount spent. In an informational offer, there is no reward, but neither is there a requisite amount that the user is expected to spend. Offers can be delivered via multiple channels.
-This was a prompt description about the data and the scenario on which we will be working on.
+Anubhuti, a Non Profit, is attempting to create a learning environment for underprivileged children by acting as a liaison between schools and the community. Anubhuti works with the government to improve children's conceptual knowledge in order to help them go into school. They motivate kids to apply by raising awareness and providing incentives. 
 
 ## 🎯 Objective 
-We aim to create a web-app which will be used to predict the best possible offer that would attract a customer on the basis of his description. We also aim at delivering certain graphs which will help us understand the purchasing patterns of the customers.
+We aim to create a web-app which will be used to provide technological assist to Anubhuti in gathering data and information from Fellows (workers) and analysing it on a daily, weekly, or monthly basis, to assess the program's impact and reach on a monthly and quarterly basis and to boost its pitches to various funders, the group requires assistance in streamlining data collecting and generating data visualisations of their impact.
 
-### 📍 Major Checkpoints and Pipelines 
-- ⛳ Data Science
-   - [x] Data cleaning and pipelining
-   - [x] Exploratory Data Analysis
-   - [ ] Building a model
-   - [ ] Training the model
-   - [ ] Testing the model
-   - [ ] Improvising the model
-   - [ ] Saving the model in a pickle file extension
+### 📍 Major Checkpoints
 - ⛳ Creation of API
-   - [ ] Importing the Pickle file
-   - [ ] Run FLask and request predictions
+   - [ ] Run server and request predictions
    - [ ] Testing the API
 - ⛳ Web Development
    - [ ] Front End
